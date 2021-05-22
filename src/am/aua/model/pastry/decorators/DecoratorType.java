@@ -9,7 +9,8 @@ public enum DecoratorType {
     MOZZARELLA("Mozzarella"),
     GOUDA("Gouda"),
     NUTELLA("Nutella"),
-    VANILLA_CREAM("Vanilla cream");
+    VANILLA_CREAM("Vanilla cream"),
+    NONE("Cancel");
 
     private final String name;
 
