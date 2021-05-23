@@ -1,11 +1,8 @@
 package am.aua.model;
 
-import am.aua.model.pastry.Croissant;
-import am.aua.model.pastry.Pancake;
 import am.aua.model.pastry.Pastry;
-import am.aua.model.pastry.Pizza;
 import am.aua.model.pastry.decorators.DecoratorType;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.DecoratorBuilder;
 import am.aua.model.pastry.decorators.basic_pastry.PlainCroissant;
 import am.aua.model.pastry.decorators.basic_pastry.PlainPancake;
 import am.aua.model.pastry.decorators.basic_pastry.PlainPizza;
@@ -20,11 +17,11 @@ import java.util.stream.Collectors;
 public class Kitchen {
 
     public List<Pastry> receiveOrder(List<Order> orders) {
-        return orders.stream().map(this::bake).map(Decorator::build).collect(Collectors.toList());
+        return orders.stream().map(this::bake).map(DecoratorBuilder::build).collect(Collectors.toList());
     }
 
-    private Decorator bake(Order order) {
-        Decorator pastry;
+    private DecoratorBuilder bake(Order order) {
+        DecoratorBuilder pastry;
         switch (order.getPastry()) {
             case PLAIN_PANCAKE ->  pastry = new PlainPancake(null);
             case PLAIN_PIZZA ->  pastry = new PlainPizza(null);

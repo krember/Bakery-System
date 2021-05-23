@@ -1,10 +1,10 @@
 package am.aua.model.pastry.decorators.toppings;
 
 import am.aua.model.pastry.decorators.DecoratorType;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.DecoratorBuilder;
 
 public class TomatoTopping extends Topping{
-    public TomatoTopping(Decorator base) {
+    public TomatoTopping(DecoratorBuilder base) {
         super(base);
     }
 

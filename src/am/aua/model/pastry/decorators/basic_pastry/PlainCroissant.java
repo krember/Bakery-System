@@ -5,9 +5,9 @@ import am.aua.model.pastry.Pastry;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
 
-public class PlainCroissant extends Decorator {
+public class PlainCroissant extends DecoratorBuilder {
 
-    public PlainCroissant(Decorator base) {
+    public PlainCroissant(DecoratorBuilder base) {
         super(base);
         if (base != null) {
             throw new IllegalArgumentException("Plain pastry cannot decorate anything");

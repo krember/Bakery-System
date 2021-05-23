@@ -3,12 +3,11 @@ package am.aua.model.pastry.decorators.basic_pastry;
 import am.aua.model.pastry.Pastry;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
-import com.sun.jdi.InvalidTypeException;
 
-public abstract class Decorator {
-    protected Decorator base;
+public abstract class DecoratorBuilder {
+    protected DecoratorBuilder base;
 
-    public Decorator(Decorator base) {
+    public DecoratorBuilder(DecoratorBuilder base) {
         this.base = base;
     }
 

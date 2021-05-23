@@ -1,13 +1,12 @@
 package am.aua.model.pastry.decorators.basic_pastry;
 
-import am.aua.model.pastry.Croissant;
 import am.aua.model.pastry.Pastry;
 import am.aua.model.pastry.Pizza;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
 
-public class PlainPizza extends Decorator {
-    public PlainPizza(Decorator base) {
+public class PlainPizza extends DecoratorBuilder {
+    public PlainPizza(DecoratorBuilder base) {
         super(base);
         if (base != null) {
             throw new IllegalArgumentException("Plain pastry cannot decorate anything");

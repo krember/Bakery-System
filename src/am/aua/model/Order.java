@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private DecoratorType pastry;
+    private final DecoratorType pastry;
     private final List<DecoratorType> toppings;
     private final List<DecoratorType> stuffings;
 

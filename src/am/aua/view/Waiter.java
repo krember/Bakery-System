@@ -3,7 +3,9 @@ package am.aua.view;
 import am.aua.model.Order;
 import am.aua.model.pastry.decorators.DecoratorType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Waiter {
     private enum OrderState {
@@ -114,7 +116,7 @@ public class Waiter {
             try {
                 slNumber = Integer.parseInt(selectionStr);
 
-                if(slNumber < 1 || slNumber > options.size()+1) {
+                if(slNumber < 1 || slNumber > options.size()) {
                     System.out.println("Invalid option : " + selectionStr);
                 } else {
                     selectionsNumbers.add(slNumber - 1);

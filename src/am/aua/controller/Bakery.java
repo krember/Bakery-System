@@ -6,7 +6,6 @@ import am.aua.controller.responsibility_chain.WaiterAction;
 import am.aua.model.Kitchen;
 import am.aua.view.Waiter;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

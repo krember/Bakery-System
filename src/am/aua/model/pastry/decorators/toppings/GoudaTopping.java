@@ -1,10 +1,10 @@
 package am.aua.model.pastry.decorators.toppings;
 
 import am.aua.model.pastry.decorators.DecoratorType;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.DecoratorBuilder;
 
 public class GoudaTopping extends Topping {
-    public GoudaTopping(Decorator base) {
+    public GoudaTopping(DecoratorBuilder base) {
         super(base);
     }
 

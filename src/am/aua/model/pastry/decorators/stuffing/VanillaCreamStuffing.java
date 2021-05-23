@@ -1,11 +1,11 @@
 package am.aua.model.pastry.decorators.stuffing;
 
 import am.aua.model.pastry.decorators.DecoratorType;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.DecoratorBuilder;
 
 public class VanillaCreamStuffing extends Stuffing {
 
-    public VanillaCreamStuffing(Decorator base) {
+    public VanillaCreamStuffing(DecoratorBuilder base) {
         super(base);
     }
 

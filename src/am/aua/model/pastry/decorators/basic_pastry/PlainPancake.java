@@ -5,9 +5,9 @@ import am.aua.model.pastry.Pastry;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
 
-public class PlainPancake extends Decorator {
+public class PlainPancake extends DecoratorBuilder {
 
-    public PlainPancake(Decorator base) {
+    public PlainPancake(DecoratorBuilder base) {
         super(base);
     }
 

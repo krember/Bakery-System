@@ -1,10 +1,10 @@
 package am.aua.model.pastry.decorators.toppings;
 
 import am.aua.model.pastry.decorators.DecoratorType;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.DecoratorBuilder;
 
 public class MozzarellaTopping extends Topping {
-    public MozzarellaTopping(Decorator base) {
+    public MozzarellaTopping(DecoratorBuilder base) {
         super(base);
     }
 
