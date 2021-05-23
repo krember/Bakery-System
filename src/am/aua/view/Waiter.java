@@ -20,24 +20,21 @@ public class Waiter {
 
     private final List<DecoratorType> toppings = List.of(
             DecoratorType.CHOCOLATE,
-            DecoratorType.VANILLA_CREAM,
-            DecoratorType.NUTELLA,
             DecoratorType.GOUDA,
             DecoratorType.MOZZARELLA,
             DecoratorType.HONEY,
-            DecoratorType.STRAWBERRY);
+            DecoratorType.STRAWBERRY,
+            DecoratorType.PEPPERONI,
+            DecoratorType.TOMATO);
 
     private final List<DecoratorType> stuffings = List.of(
-            DecoratorType.CHOCOLATE,
-            DecoratorType.VANILLA_CREAM,
+            DecoratorType.CHEESE_CRUST,
             DecoratorType.NUTELLA,
-            DecoratorType.GOUDA,
-            DecoratorType.MOZZARELLA,
-            DecoratorType.HONEY);
+            DecoratorType.VANILLA_CREAM);
 
     private OrderState currentState = OrderState.SELECT_PASTRY;
     private final Scanner reader = new Scanner(System.in);
-    private final List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
     private Order currentOrder;
     private boolean orderInProgress = false;
 
@@ -49,8 +46,9 @@ public class Waiter {
                 case SELECT_TOPPINGS -> handleTopping();
                 case SELECT_STUFFINGS -> handleStuffing();
                 case DONE -> {
-                    orderInProgress = false;
-                    return orders;
+                    List<Order> pOrder = orders;
+                    finish();
+                    return pOrder;
                 }
             }
         }
@@ -82,7 +80,7 @@ public class Waiter {
         List<Integer> selectionNumbers = printOptions(stuffings, "What stuffing would you like:");
 
         for(Integer selectionNumber : selectionNumbers) {
-            DecoratorType selection = toppings.get(selectionNumber);
+            DecoratorType selection = stuffings.get(selectionNumber);
             currentOrder.addStuffing(selection);
         }
 
@@ -127,6 +125,13 @@ public class Waiter {
         }
 
         return selectionsNumbers;
+    }
+
+    private void finish() {
+        currentState = OrderState.SELECT_PASTRY;
+        orders = new ArrayList<>();
+        orderInProgress = false;
+        currentOrder = null;
     }
 
     public boolean isFree() {

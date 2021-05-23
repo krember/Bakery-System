@@ -21,13 +21,21 @@ public abstract class Pastry {
 
     @Override
     public String toString() {
-        String toppingString = toppings.stream()
-                .map(DecoratorType::getName)
-                .collect(Collectors.joining(", ", " with ", " on top"));
-        String stuffingsString = stuffings.stream()
-                .map(DecoratorType::getName)
-                .collect(Collectors.joining(", ", ", and ", " inside"));
+        StringBuilder message = new StringBuilder();
+        String prefix = " with ";
+        if (!toppings.isEmpty()) {
+            message.append(toppings.stream()
+                    .map(DecoratorType::getName)
+                    .collect(Collectors.joining(", ", " with ", " on top")));
+            prefix = ", and ";
+        }
 
-        return toppingString + stuffingsString;
+        if (!stuffings.isEmpty()) {
+            message.append(stuffings.stream()
+                    .map(DecoratorType::getName)
+                    .collect(Collectors.joining(", ", prefix, " inside")));
+        }
+
+        return message.toString();
     }
 }

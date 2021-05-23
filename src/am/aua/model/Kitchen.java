@@ -5,6 +5,14 @@ import am.aua.model.pastry.Pancake;
 import am.aua.model.pastry.Pastry;
 import am.aua.model.pastry.Pizza;
 import am.aua.model.pastry.decorators.DecoratorType;
+import am.aua.model.pastry.decorators.basic_pastry.Decorator;
+import am.aua.model.pastry.decorators.basic_pastry.PlainCroissant;
+import am.aua.model.pastry.decorators.basic_pastry.PlainPancake;
+import am.aua.model.pastry.decorators.basic_pastry.PlainPizza;
+import am.aua.model.pastry.decorators.stuffing.CheeseCrustStuffing;
+import am.aua.model.pastry.decorators.stuffing.NutellaStuffing;
+import am.aua.model.pastry.decorators.stuffing.VanillaCreamStuffing;
+import am.aua.model.pastry.decorators.toppings.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,20 +20,38 @@ import java.util.stream.Collectors;
 public class Kitchen {
 
     public List<Pastry> receiveOrder(List<Order> orders) {
-        return orders.stream().map(this::bake).collect(Collectors.toList());
+        return orders.stream().map(this::bake).map(Decorator::build).collect(Collectors.toList());
     }
 
-    private Pastry bake(Order order) {
-        Pastry pastry;
+    private Decorator bake(Order order) {
+        Decorator pastry;
         switch (order.getPastry()) {
-            case PLAIN_PANCAKE ->  pastry = new Pancake();
-            case PLAIN_PIZZA ->  pastry = new Pizza();
-            case PLAIN_CROISSANT ->  pastry = new Croissant();
+            case PLAIN_PANCAKE ->  pastry = new PlainPancake(null);
+            case PLAIN_PIZZA ->  pastry = new PlainPizza(null);
+            case PLAIN_CROISSANT ->  pastry = new PlainCroissant(null);
             default -> throw new IllegalStateException();
         }
 
-        order.getToppings().forEach(pastry::addTopping);
-        order.getStuffings().forEach(pastry::addStuffing);
+        for (DecoratorType topping : order.getToppings()) {
+            switch (topping) {
+                case GOUDA -> pastry = new GoudaTopping(pastry);
+                case CHOCOLATE -> pastry = new ChocolateTopping(pastry);
+                case HONEY -> pastry = new HoneyTopping(pastry);
+                case STRAWBERRY -> pastry = new StrawberryTopping(pastry);
+                case MOZZARELLA -> pastry = new MozzarellaTopping(pastry);
+                case TOMATO -> pastry = new TomatoTopping(pastry);
+                case PEPPERONI -> pastry = new PepperoniTopping(pastry);
+                default -> throw new IllegalStateException();
+            }
+        }
+        for (DecoratorType stuffing : order.getStuffings()) {
+            switch (stuffing) {
+                case CHEESE_CRUST -> pastry = new CheeseCrustStuffing(pastry);
+                case NUTELLA -> pastry = new NutellaStuffing(pastry);
+                case VANILLA_CREAM -> pastry = new VanillaCreamStuffing(pastry);
+                default -> throw new IllegalStateException();
+            }
+        }
 
         return pastry;
     }

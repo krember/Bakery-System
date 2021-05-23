@@ -6,8 +6,8 @@ import am.aua.model.pastry.Pizza;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
 
-public class PizzaDecorator extends Decorator {
-    public PizzaDecorator(Decorator base) {
+public class PlainPizza extends Decorator {
+    public PlainPizza(Decorator base) {
         super(base);
         if (base != null) {
             throw new IllegalArgumentException("Plain pastry cannot decorate anything");
@@ -21,7 +21,7 @@ public class PizzaDecorator extends Decorator {
 
     @Override
     public String getDescription() {
-        return "Base Pizza";
+        return "Plain Pizza";
     }
 
     @Override
