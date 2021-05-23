@@ -1,30 +1,41 @@
 package am.aua.model.pastry.decorators.basic_pastry;
 
+import am.aua.model.pastry.Croissant;
+import am.aua.model.pastry.Pastry;
+import am.aua.model.pastry.Pizza;
 import am.aua.model.pastry.decorators.DecoratorGroup;
 import am.aua.model.pastry.decorators.DecoratorType;
 
 public class PizzaDecorator extends Decorator {
     public PizzaDecorator(Decorator base) {
         super(base);
+        if (base != null) {
+            throw new IllegalArgumentException("Plain pastry cannot decorate anything");
+        }
+    }
+
+    @Override
+    public Pastry createPlainPastry() {
+        return new Pizza();
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return "Base Pizza";
     }
 
     @Override
     public double getPrice() {
-        return 0;
+        return 1;
     }
 
     @Override
     public DecoratorGroup getGroup() {
-        return null;
+        return DecoratorGroup.PLAIN_PASTRY;
     }
 
     @Override
     public DecoratorType getType() {
-        return null;
+        return DecoratorType.PLAIN_PIZZA;
     }
 }

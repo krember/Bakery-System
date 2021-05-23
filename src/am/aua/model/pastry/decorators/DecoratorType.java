@@ -9,6 +9,9 @@ public enum DecoratorType {
     MOZZARELLA("Mozzarella"),
     GOUDA("Gouda"),
     NUTELLA("Nutella"),
+    PEPPERONI("Pepperoni"),
+    TOMATO("Tomato sauce"),
+    CHEESE_CRUST("Cheese crust"),
     VANILLA_CREAM("Vanilla cream"),
     HONEY("Honey"),
     NONE("Cancel");
