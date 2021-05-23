@@ -1,4 +1,4 @@
-package am.aua.bakery.responsibility_chain;
+package am.aua.controller.responsibility_chain;
 
 import am.aua.model.Order;
 import am.aua.view.Waiter;
@@ -14,6 +14,7 @@ public class WaiterAction extends Action {
 
     public WaiterAction(Waiter waiter, Action next) {
         super(next);
+        this.waiter = waiter;
     }
 
     @Override

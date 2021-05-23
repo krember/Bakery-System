@@ -1,7 +1,6 @@
-package am.aua.bakery.responsibility_chain;
+package am.aua.controller.responsibility_chain;
 
 import am.aua.model.Order;
-import am.aua.model.pastry.decorators.basic_pastry.Decorator;
 
 import java.util.List;
 
