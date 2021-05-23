@@ -10,6 +10,7 @@ public enum DecoratorType {
     GOUDA("Gouda"),
     NUTELLA("Nutella"),
     VANILLA_CREAM("Vanilla cream"),
+    HONEY("Honey"),
     NONE("Cancel");
 
     private final String name;

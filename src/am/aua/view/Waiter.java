@@ -19,34 +19,37 @@ public class Waiter {
             DecoratorType.PLAIN_PIZZA);
 
     private final List<DecoratorType> toppings = List.of(
-        DecoratorType.CHOCOLATE,
-        DecoratorType.VANILLA_CREAM,
-        DecoratorType.NUTELLA,
-        DecoratorType.GOUDA,
-        DecoratorType.MOZZARELLA,
-        DecoratorType.STRAWBERRY);
+            DecoratorType.CHOCOLATE,
+            DecoratorType.VANILLA_CREAM,
+            DecoratorType.NUTELLA,
+            DecoratorType.GOUDA,
+            DecoratorType.MOZZARELLA,
+            DecoratorType.HONEY,
+            DecoratorType.STRAWBERRY);
 
-//    private final List<DecoratorType> stuffings = new ArrayList<>() {{
-//        plainPastry.add(DecoratorType.CHOCOLATE);
-//        plainPastry.add(DecoratorType.VANILLA_CREAM);
-//        plainPastry.add(DecoratorType.NUTELLA);
-//        plainPastry.add(DecoratorType.GOUDA);
-//        plainPastry.add(DecoratorType.MOZZARELLA);
-//        plainPastry.add(DecoratorType.STRAWBERRY);
-//    }};
+    private final List<DecoratorType> stuffings = List.of(
+            DecoratorType.CHOCOLATE,
+            DecoratorType.VANILLA_CREAM,
+            DecoratorType.NUTELLA,
+            DecoratorType.GOUDA,
+            DecoratorType.MOZZARELLA,
+            DecoratorType.HONEY);
 
     private OrderState currentState = OrderState.SELECT_PASTRY;
     private final Scanner reader = new Scanner(System.in);
     private final List<Order> orders = new ArrayList<>();
     private Order currentOrder;
+    private boolean orderInProgress = false;
 
     public List<Order> startOrder() {
         while (true) {
+            orderInProgress = true;
             switch (currentState) {
                 case SELECT_PASTRY -> handlePastryState();
                 case SELECT_TOPPINGS -> handleTopping();
                 case SELECT_STUFFINGS -> handleStuffing();
                 case DONE -> {
+                    orderInProgress = false;
                     return orders;
                 }
             }
@@ -76,7 +79,7 @@ public class Waiter {
     }
 
     private void handleStuffing() {
-        List<Integer> selectionNumbers = printOptions(toppings, "What stuffing would you like:");
+        List<Integer> selectionNumbers = printOptions(stuffings, "What stuffing would you like:");
 
         for(Integer selectionNumber : selectionNumbers) {
             DecoratorType selection = toppings.get(selectionNumber);
@@ -124,5 +127,9 @@ public class Waiter {
         }
 
         return selectionsNumbers;
+    }
+
+    public boolean isFree() {
+        return !orderInProgress;
     }
 }
